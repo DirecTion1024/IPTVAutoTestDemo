@@ -20,7 +20,9 @@ class MyClass(object):
     def rc_right(self):
         os.popen('adb shell input keyevent 22')
     
-		
+    def rc_backkey(self):
+        os.popen('adb shell input keyevent 4')
+        
     def searchContent(self,content):
         search = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text '+content
         print search
