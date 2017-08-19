@@ -1,0 +1,23 @@
+*** Settings ***
+Library           AppiumLibrary
+Library           NewLibrary
+Resource          ../Resources/Environment.txt
+
+*** Test Cases ***
+TestCase1
+    Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
+    ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}
+    Sleep    3
+    Print Msg    test
+    rc_down
+    Search Content    周星驰的电影
+    Sleep    3
+    ${name}    Get Element Attribute    xpath=//android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView    text
+    log    ${name}
+
+TestCase2
+    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout    focused
+    log    ${stat}
+    sleep    3
+    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
+    ...    ELSE    Capture Page Screenshot

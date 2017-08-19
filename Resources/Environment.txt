@@ -1,0 +1,28 @@
+*** Variables ***
+${SERVERURL}      http://localhost:4723/wd/hub
+${PLATFORMNAME}    Android
+${PLATFORMVERSION}    4.4.2
+${DEVICENAME}     NotUsedInAndroid
+${UDID}           ${EMPTY}    #DeviceID
+${UID}            ${EMPTY}
+${APP}            ${EMPTY}
+${AUTOMATIONNAME}    appium
+${APPPACKAGE}     com.zte.browser
+${APPACTIVITY}    .BrowserActivity
+${APPLAUNCHACTIVITY}    .LauncherActivity
+${NOSIGN}         true
+${TESTAPP}        ${CURDIR}/../../TestApp/ForImeTest.apk
+${TESTPACKAGE}    com.forimetest
+${TESTACTIVITY}    .MainActivity
+${IFLYIMEENGINE}    com.iflytek.inputmethod/.FlyIME
+${APPIUMUI}       commandline
+${LoginPage}      http://ossptest.voicecloud.cn:89/auth/login
+${Browser}        chrome
+${LoginUserName}    ydhl
+${LoginPassWord}    ydhl
+${keyboard_navigate_sleep_time_extra}    0.1
+${newCommandTimeout}    180
+${cappath}        E:/UICheckTool/checkResult
+${resolution}     1080x1920
+${skinname}       默认
+${layout}         默认

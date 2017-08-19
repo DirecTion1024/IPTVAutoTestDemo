@@ -1,0 +1,16 @@
+*** Settings ***
+Resource          ../Resources/Environment.txt
+
+*** Keywords ***
+Open Test App
+    Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${TESTAPP}    automationName=${AUTOMATIONNAME}
+    ...    appPackage=${TESTPACKAGE}    appActivity=${TESTACTIVITY}    noSign=${NOSIGN}    udid=${UDID}    newCommandTimeout=${newCommandTimeout}
+
+Tap Text
+    [Arguments]    ${text}
+    Tap    xpath=//*[@text='${text}']
+
+Wait And Tap Text
+    [Arguments]    ${element}
+    Wait Until Page Contains    ${element}    15
+    Tap Text    ${element}

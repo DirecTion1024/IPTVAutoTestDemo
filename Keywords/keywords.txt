@@ -1,0 +1,3 @@
+*** Settings ***
+Library           AppiumLibrary    run_on_failure=Capture Page Screenshot
+Resource          Navigate.txt
