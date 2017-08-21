@@ -10,6 +10,7 @@ TestCase1
     Sleep    3
     Print Msg    test
     rc_down
+    searchContent    周星驰的电影
     Sleep    5
     ${name}    Get Element Attribute    xpath=//android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView    text
     log    ${name}
@@ -35,5 +36,8 @@ TestCase3
     \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
     \    ...    ELSE    Capture Page Screenshot
     \    rc_left
+
+test
+    read_file
 
 *** Keywords ***
