@@ -10,8 +10,8 @@ TestCase1
     Sleep    3
     Print Msg    test
     rc_down
-    Search Content    周星驰的电影
-    Sleep    3
+    searchContent    周星驰的电影
+    Sleep    5
     ${name}    Get Element Attribute    xpath=//android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView    text
     log    ${name}
 
@@ -21,3 +21,23 @@ TestCase2
     sleep    3
     Run Keyword If    '${stat}'=='true'    log    焦点位置正确
     ...    ELSE    Capture Page Screenshot
+
+TestCase3
+    : FOR    ${i}    IN    make_odd    3    9
+    \    rc_right
+    \    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${i}]    focused
+    \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
+    \    ...    ELSE    Capture Page Screenshot
+    rc_down
+    sleep    2
+    : FOR    ${j}    IN    10    8    6    4
+    ...    2
+    \    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${j}]    focused
+    \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
+    \    ...    ELSE    Capture Page Screenshot
+    \    rc_left
+
+test
+    read_file
+
+*** Keywords ***
