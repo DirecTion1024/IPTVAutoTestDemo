@@ -21,3 +21,19 @@ TestCase2
     sleep    3
     Run Keyword If    '${stat}'=='true'    log    焦点位置正确
     ...    ELSE    Capture Page Screenshot
+
+TestCase3
+    : FOR    ${i}    IN    3    5    7    9
+    \    rc_right
+    \    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${i}]    focused
+    \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
+    \    ...    ELSE    Capture Page Screenshot
+    rc_down
+    :FOR    ${j}    IN    10    8    6    4
+    ...    2
+    \    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${i}]    focused
+    \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
+    \    ...    ELSE    Capture Page Screenshot
+    \    rc_left
+
+*** Keywords ***
