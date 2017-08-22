@@ -23,7 +23,7 @@ TestCase2
     ...    ELSE    Capture Page Screenshot
 
 TestCase3
-    : FOR    ${i}    IN    make_odd    3    9
+    : FOR    ${i}    IN    3    5    7    9
     \    rc_right
     \    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${i}]    focused
     \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
@@ -36,8 +36,5 @@ TestCase3
     \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
     \    ...    ELSE    Capture Page Screenshot
     \    rc_left
-
-test
-    read_file
 
 *** Keywords ***

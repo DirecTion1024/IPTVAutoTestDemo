@@ -1,7 +1,6 @@
 #-*- coding:UTF-8 -*-
 import os
-import sys
-reload(sys)
+import codecs
 
 class MyClass(object):
     def __init__(self):
@@ -28,9 +27,13 @@ class MyClass(object):
     def searchContent(self,content):
         search = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text '+content
         print search
+        #search = u'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text 周星驰的电影'
+        #fhandle = codecs.open('f:\search.txt','w','utf-8')
+        #fhandle.write(search)
+        #fhandle.close()
         fhandle = open('f:\search.txt')
-        fhandle.write(search)
-        os.system(fhandle.read())   
+        os.system(fhandle.read())
+        fhandle.close()       
     
     def make_odd(self,startnum,endnum):
         while startnum <= endnum:
@@ -50,6 +53,20 @@ class MyClass(object):
         fhandle = open(filelocation)
         print fhandle.read()
     
-    
+    def wirte_file(self,filelocation,content):
+        fhandle = open(filelocation,'w')
+        fhandle.write(str)
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
      
     
