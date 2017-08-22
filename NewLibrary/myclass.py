@@ -1,6 +1,7 @@
 #-*- coding:UTF-8 -*-
 import os
 import codecs
+from AppiumLibrary import AppiumLibrary
 
 class MyClass(object):
     def __init__(self):
@@ -57,16 +58,13 @@ class MyClass(object):
         fhandle = open(filelocation,'w')
         fhandle.write(str)
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+    def get_page(self,content):
+        page = content[1]
+        return page
     
+       
+        
+        
+        
+        
+        

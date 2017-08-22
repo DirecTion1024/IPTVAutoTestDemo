@@ -4,7 +4,7 @@ Library           NewLibrary
 Resource          ../Resources/Environment.txt
 
 *** Test Cases ***
-TestCase1
+SearchFilm
     Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
     ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}
     Sleep    3
@@ -15,14 +15,14 @@ TestCase1
     ${name}    Get Element Attribute    xpath=//android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView    text
     log    ${name}
 
-TestCase2
+JudgeFocus
     ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout    focused
     log    ${stat}
     sleep    3
     Run Keyword If    '${stat}'=='true'    log    焦点位置正确
     ...    ELSE    Capture Page Screenshot
 
-TestCase3
+ErgodicFocus
     : FOR    ${i}    IN    3    5    7    9
     \    rc_right
     \    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${i}]    focused
@@ -36,5 +36,13 @@ TestCase3
     \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
     \    ...    ELSE    Capture Page Screenshot
     \    rc_left
+
+GetPage
+    ${content}    Get Element Attribute    xpath=//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.TextView[3]    text
+    log    ${content}
+    ${pagenum}    get_page    ${content}
+    log    ${pagenum}
+    Run Keyword If    '${pagenum}'=='3'    log    pagenumber is right
+    ...    ELSE    Capture Page Screenshot
 
 *** Keywords ***
