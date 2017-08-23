@@ -1,0 +1,10 @@
+*** Settings ***
+Library           AppiumLibrary
+Library           NewLibrary
+Resource          ../Resources/SX_Environment.txt
+
+*** Test Cases ***
+TestCase1
+    searchContent    周星驰的电影
+    Sleep    3
+    rc_right

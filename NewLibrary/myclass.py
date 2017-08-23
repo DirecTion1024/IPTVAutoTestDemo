@@ -33,8 +33,8 @@ class MyClass(object):
         #fhandle.write(search)
         #fhandle.close()
         fhandle = open('f:\search.txt')
+        print fhandle.read()
         os.system(fhandle.read())
-        fhandle.close()       
     
     def make_odd(self,startnum,endnum):
         while startnum <= endnum:

@@ -7,8 +7,8 @@ ${UDID}           ${EMPTY}    #DeviceID
 ${UID}            ${EMPTY}
 ${APP}            ${EMPTY}
 ${AUTOMATIONNAME}    appium
-${APPPACKAGE}     com.zte.browser
-${APPACTIVITY}    .BrowserActivity
+${APPPACKAGE}     com.voole.webepg
+${APPACTIVITY}    com.voole.webepg
 ${APPLAUNCHACTIVITY}    .LauncherActivity
 ${NOSIGN}         true
 ${TESTAPP}        ${CURDIR}/../../TestApp/ForImeTest.apk
