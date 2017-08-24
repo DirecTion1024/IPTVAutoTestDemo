@@ -119,15 +119,14 @@ class MyClass(object):
             sleep(2)
             
     def sx_python_test(self):
-        for i in range (1,4):
+        for i in range (1,11):
             content = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text '+linecache.getline('f:\search.txt',i)
             os.popen(content)
-            sleep(2)
+            sleep(1)
             os.popen('adb shell input keyevent 23')
             sleep(1)
             pagenumber = 'screenshot'+str(i)+'.png'
             os.popen('adb shell screencap -p /sdcard/'+pagenumber)
-            sleep(1)
             os.popen('adb pull /sdcard/'+pagenumber+' d:/'+pagenumber)
             
     def sx_search(self,filepath,linenum):
