@@ -2,9 +2,32 @@
 Library           AppiumLibrary
 Library           NewLibrary
 Resource          ../Resources/SX_Environment.txt
+Library           Screenshot
 
 *** Test Cases ***
-TestCase1
-    searchContent    周星驰的电影
-    Sleep    3
-    rc_right
+SX_Test
+    sleep    3
+    read_wirte    f:\search.txt
+    sleep    2
+    searchContent    f:\search.txt
+    sleep    3
+    rc_ok
+    sleep    3
+
+SX_Filecontent_ReWirte
+    read_by_line
+    sleep    1
+
+SX_Pythontest
+    sx_python_test
+
+SX_Search_Autotest
+    : FOR    ${j}    IN RANGE    1    4
+    \    sx_search    f:\search.txt    ${j}
+    \    sleep    1
+    \    rc_ok
+    \    sleep    1
+    \    sx_screen_shot    ${j}
+
+test
+    line_number    f:\search.txt
