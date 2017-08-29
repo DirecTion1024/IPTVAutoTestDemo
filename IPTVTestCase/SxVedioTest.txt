@@ -21,13 +21,10 @@ SX_Pythontest
     sx_python_test
 
 SX_Search_Autotest
-    : FOR    ${j}    IN RANGE    1    11
+    : FOR    ${j}    IN RANGE    1    7
     \    sx_search    f:\search.txt    ${j}
-    \    sleep    1
+    \    sleep    3
     \    rc_ok
-    \    sleep    1
+    \    sleep    3
     \    sx_screen_shot    ${j}
-
-test
-    Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
-    ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}
+    \    rc_backkey

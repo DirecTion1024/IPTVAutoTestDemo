@@ -2,7 +2,6 @@
 import os
 import linecache
 from time import sleep
-from AppiumLibrary import AppiumLibrary
 class MyClass(object):
     def __init__(self):
         pass
@@ -28,6 +27,8 @@ class MyClass(object):
     def rc_ok(self):
         os.popen('adb shell input keyevent 23')	
      
+    def rc_home(self):
+        os.popen('adb shell input keyevent 3')
         
     def searchContent(self,filelocation):
         #search = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text '+content
@@ -114,9 +115,9 @@ class MyClass(object):
         for i in range (1,4):
             print linecache.getline(r'f:\search.txt',i)
             os.popen(linecache.getline(r'f:\search.txt',i))
-            sleep(2)
+            sleep(1)
             os.popen('adb shell input keyevent 23')
-            sleep(2)
+            sleep(1)
             
     def sx_python_test(self):
         for i in range (1,11):
@@ -133,14 +134,14 @@ class MyClass(object):
         print filepath
         print linenum
         content = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text '+linecache.getline(str(filepath),int(linenum))
+        command = content.decode("utf-8").encode("gbk")
         print content
-        os.popen(content) 
+        os.popen(command) 
                
     def sx_screen_shot(self,picnumber):
         pagenumber = 'screenshot'+str(picnumber)+'.png'
         os.popen('adb shell /system/bin/screencap -p /sdcard/'+pagenumber)
-        os.popen('adb pull /sdcard/'+pagenumber+' d:/'+pagenumber)
-        
+        os.popen('adb pull /sdcard/'+pagenumber+' d:/testshot/'+pagenumber)
         
         
     def line_number(self,filelocation):
