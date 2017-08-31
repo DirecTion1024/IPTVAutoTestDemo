@@ -1,7 +1,7 @@
 *** Settings ***
 Library           AppiumLibrary
-Library           NewLibrary
 Resource          ../Resources/SX_Environment.txt
+Library           NewLibrary
 
 *** Test Cases ***
 SX_Test

@@ -1,0 +1,27 @@
+*** Settings ***
+Resource          ../Resources/Environment.txt
+Library           AppiumLibrary
+Library           NewLibrary
+
+*** Test Cases ***
+IPTVLiveH5Test
+    ${Process}    Set Variable    com.android.smart.terminal.iptv
+    ${androidProcess}=    Create Dictionary    androidProcess=${Process}
+    ${UNICODEKEYBOARD}    Set Variable    True
+    ${RESETKEYBOARD}    Set Variable    True
+    rc_right
+    Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    automationName=${AUTOMATIONNAME}    appPackage=${APPPACKAGE}
+    ...    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}    unicodeKeyboard=True    resetKeyboard=True    chromeOptions=${androidProcess}
+    sleep    5
+    open_live
+    sleep    5
+    Capture Page Screenshot
+    rc_left
+    : FOR    ${i}    IN RANGE    1    7
+    \    rc_down
+    ${contexts}    get_contexts
+    ${current_context}    get_current_context
+    Switch To Context    WEBVIEW_com.android.smart.terminal.iptv
+    ${current_context}    get_current_context
+    sleep    1
+    judge_content    测试3

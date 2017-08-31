@@ -2,6 +2,7 @@
 import os
 import linecache
 from time import sleep
+from AppiumLibrary import AppiumLibrary
 class MyClass(object):
     def __init__(self):
         pass
@@ -149,7 +150,19 @@ class MyClass(object):
         row_len = len(fobj.readlines())
         return row_len
         
+    def open_live(self):
+        command = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text 我要看直播'
+        os.system(command.decode("utf-8").encode("gbk"))   
         
-        
+    def judge_content(self,content):
+        text = content.decode("utf-8").encode("gbk")
+        AppiumLibrary.page_should_contain_text(self, text)
+     
+     
+     
+     
+     
+     
+     
         
         

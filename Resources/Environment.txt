@@ -7,8 +7,8 @@ ${UDID}           ${EMPTY}    #DeviceID
 ${UID}            ${EMPTY}
 ${APP}            ${EMPTY}
 ${AUTOMATIONNAME}    appium
-${APPPACKAGE}     com.zte.browser
-${APPACTIVITY}    .BrowserActivity
+${APPPACKAGE}     com.android.smart.terminal.iptv
+${APPACTIVITY}    com.SyMedia.SyIptv.SyIptv
 ${APPLAUNCHACTIVITY}    .LauncherActivity
 ${NOSIGN}         true
 ${TESTAPP}        ${CURDIR}/../../TestApp/ForImeTest.apk
