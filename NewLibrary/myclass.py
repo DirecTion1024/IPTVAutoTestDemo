@@ -107,7 +107,7 @@ class MyClass(object):
         #print fobj.readlines()
         #f = open('f:\search.txt')
         #for i in f.readlines()[line]:
-           # print i
+        # print i
     def read_line_content(self):
         #readhandle = open('f:\search.txt')
         print (linecache.getline(r'f:\search.txt',1))
@@ -154,12 +154,10 @@ class MyClass(object):
         command = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text 我要看直播'
         os.system(command.decode("utf-8").encode("gbk"))   
         
-    def judge_content(self,content):
+    def judge_content(self):
+        content = "测试3"
         text = content.decode("utf-8").encode("gbk")
         AppiumLibrary.page_should_contain_text(self, text)
-     
-     
-     
      
      
      

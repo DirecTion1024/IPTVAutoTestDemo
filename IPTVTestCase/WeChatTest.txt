@@ -1,37 +1,24 @@
 *** Settings ***
-Resource          ../Resources/Environment.txt
+Resource          ../Resources/WeChat_Environment.txt
 Library           AppiumLibrary
-Library           NewLibrary
 
 *** Test Cases ***
-IPTVLiveH5Test
-    ${Process}    Set Variable    com.fiberhome.iptv
+test
+    ${Process}    Set Variable    com.tencent.mm:appbrand1
     ${androidProcess}=    Create Dictionary    androidProcess=${Process}
     ${UNICODEKEYBOARD}    Set Variable    True
     ${RESETKEYBOARD}    Set Variable    True
-    rc_right
     Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    automationName=${AUTOMATIONNAME}    appPackage=${APPPACKAGE}
     ...    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}    unicodeKeyboard=True    resetKeyboard=True    chromeOptions=${androidProcess}
     sleep    5
-    open_live
-    sleep    5
-    Capture Page Screenshot
+    Wait Until Page Contains    微信
+    Click Text    发现
+    sleep    1
+    Click Text    小程序
+    sleep    2
+    Click Text    美团外卖+
+    Sleep    20
     ${contexts}    get_contexts
     ${current_context}    get_current_context
-    Switch To Context    WEBVIEW_com.fiberhome.iptv
-    Log Source
+    Switch To Context    WEBVIEW_com.tencent.mm:appbrand1
     ${current_context}    get_current_context
-    rc_left
-    : FOR    ${i}    IN RANGE    1    7
-    \    rc_down
-    Log Source
-    特殊频道
-    Switch To Context    NATIVE_APP
-    ${current_context}    get_current_context
-
-*** Keywords ***
-特殊频道
-    Page Should Contain Text    CCTV-3
-    Page Should Contain Text    CCTV-5
-    Page Should Contain Text    CCTV-6
-    Page Should Contain Text    CCTV-8

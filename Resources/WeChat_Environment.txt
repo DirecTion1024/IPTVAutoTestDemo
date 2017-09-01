@@ -7,8 +7,8 @@ ${UDID}           ${EMPTY}    #DeviceID
 ${UID}            ${EMPTY}
 ${APP}            ${EMPTY}
 ${AUTOMATIONNAME}    appium
-${APPPACKAGE}     com.amt.launcherah
-${APPACTIVITY}    .activity.MainActivity
+${APPPACKAGE}     com.tencent.mm
+${APPACTIVITY}    .ui.LauncherUI
 ${APPLAUNCHACTIVITY}    .LauncherActivity
 ${NOSIGN}         true
 ${TESTAPP}        ${CURDIR}/../../TestApp/ForImeTest.apk
