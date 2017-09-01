@@ -28,6 +28,10 @@ IPTVLiveH5Test
     特殊频道
     Switch To Context    NATIVE_APP
     ${current_context}    get_current_context
+    sx_screen_shot    liveshot
+
+test
+    send_email
 
 *** Keywords ***
 特殊频道

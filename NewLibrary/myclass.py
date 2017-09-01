@@ -3,6 +3,10 @@ import os
 import linecache
 from time import sleep
 from AppiumLibrary import AppiumLibrary
+import smtplib  
+from email.mime.multipart import MIMEMultipart  
+from email.mime.text import MIMEText  
+from email.mime.image import MIMEImage
 class MyClass(object):
     def __init__(self):
         pass
@@ -159,7 +163,33 @@ class MyClass(object):
         text = content.decode("utf-8").encode("gbk")
         AppiumLibrary.page_should_contain_text(self, text)
      
-     
+    def send_email(self,receiver_mail,email_content):
+        sender = '1021249576@qq.com'  
+        receiver = receiver_mail  
+        subject = 'python email test'  
+        smtpserver = 'smtp.qq.com'  
+        username = '1021249576@qq.com'  
+        password = 'itgyuoifwkyfbbgi'  
+    
+        msgRoot = MIMEMultipart('related')  
+        msgRoot['Subject'] = email_content  
+  
+        #构造附件  
+        att = MIMEText(open('d:\\testshot\\liveshot.png', 'rb').read(), 'base64', 'utf-8')  
+        att["Content-Type"] = 'application/octet-stream'  
+        att["Content-Disposition"] = 'attachment; filename="liveshot.png"'  
+        msgRoot.attach(att)  
+          
+        smtp = smtplib.SMTP()  
+        smtp.connect('smtp.qq.com')  
+        smtp.login(username, password)  
+        smtp.sendmail(sender, receiver, msgRoot.as_string())  
+        smtp.quit()  
+        
+        
+        
+        
+         
      
      
         
