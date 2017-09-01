@@ -28,10 +28,8 @@ IPTVLiveH5Test
     特殊频道
     Switch To Context    NATIVE_APP
     ${current_context}    get_current_context
-    sx_screen_shot    liveshot
-
-test
-    send_email
+    频道列表截图
+    send_email    xiangfang@iflytek.com    liveshot
 
 *** Keywords ***
 特殊频道
@@ -39,3 +37,6 @@ test
     Page Should Contain Text    CCTV-5
     Page Should Contain Text    CCTV-6
     Page Should Contain Text    CCTV-8
+
+频道列表截图
+    sx_screen_shot    liveshot

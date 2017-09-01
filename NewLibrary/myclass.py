@@ -175,9 +175,9 @@ class MyClass(object):
         msgRoot['Subject'] = email_content  
   
         #构造附件  
-        att = MIMEText(open('d:\\testshot\\liveshot.png', 'rb').read(), 'base64', 'utf-8')  
+        att = MIMEText(open('d:\\testshot\\screenshotliveshot.png', 'rb').read(), 'base64', 'utf-8')  
         att["Content-Type"] = 'application/octet-stream'  
-        att["Content-Disposition"] = 'attachment; filename="liveshot.png"'  
+        att["Content-Disposition"] = 'attachment; filename="screenshotliveshot.png"'  
         msgRoot.attach(att)  
           
         smtp = smtplib.SMTP()  
