@@ -35,12 +35,10 @@ class MyClass(object):
     def rc_home(self):
         os.popen('adb shell input keyevent 3')
         
-    def searchContent(self,filelocation):
-        #search = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text '+content
-        #print search
-        #os.popen('adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text 周星驰的电影')
-        fhandle = open(filelocation)
-        os.popen(fhandle.read())
+    def searchContent(self):
+        command = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text 周星驰的电影'
+        print command.decode("utf-8").encode("gbk")
+        os.popen(command.decode("utf-8").encode("gbk"))
     
     def make_odd(self,startnum,endnum):
         while startnum <= endnum:

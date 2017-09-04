@@ -10,7 +10,7 @@ SearchFilm
     Sleep    3
     Print Msg    test
     rc_down
-    searchContent    周星驰的电影
+    searchContent
     Sleep    5
     ${name}    Get Element Attribute    xpath=//android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView    text
     log    ${name}
