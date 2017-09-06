@@ -14,16 +14,4 @@
 	<natures>
 		<nature>org.python.pydev.pythonNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>NewLibrary/__init__.py</name>
-			<type>1</type>
-			<location>C:/Python27/Lib/site-packages/NewLibrary/__init__.py</location>
-		</link>
-		<link>
-			<name>NewLibrary/myclass.py</name>
-			<type>1</type>
-			<location>C:/Python27/Lib/site-packages/NewLibrary/myclass.py</location>
-		</link>
-	</linkedResources>
 </projectDescription>
