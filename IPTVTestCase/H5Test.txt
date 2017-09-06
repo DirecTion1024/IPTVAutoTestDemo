@@ -2,6 +2,7 @@
 Resource          ../Resources/Environment.txt
 Library           AppiumLibrary
 Library           NewLibrary
+Library           BGLogLibrary
 
 *** Test Cases ***
 IPTVLiveH5Test
