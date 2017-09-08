@@ -29,8 +29,8 @@ SX_Search_Autotest
     log    ${looptimes}
     : FOR    ${j}    IN RANGE    1    ${looptimes}
     \    sx_search    f:\search.txt    ${j}
-    \    Wait Until Page Contains    第 1 页    5
+    \    ${result}    AppiumLibrary.Get Element Attribute    xpath = //android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView[2]    txt
+    \    log    ${result}
     \    rc_ok
     \    sleep    1
     \    Capture Page Screenshot
-    log    test_end

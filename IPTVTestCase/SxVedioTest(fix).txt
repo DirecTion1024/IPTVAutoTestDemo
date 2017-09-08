@@ -1,0 +1,49 @@
+*** Settings ***
+Library           AppiumLibrary
+Library           NewLibrary
+Resource          ../Resources/SX_Environment.txt
+
+*** Test Cases ***
+SX_Test
+    sleep    3
+    read_wirte    F:\search.txt
+    sleep    2
+    searchContent    F:\search.txt
+    sleep    3
+    rc_ok
+    sleep    3
+
+SX_Filecontent_ReWirte
+    read_by_line
+    sleep    1
+
+SX_Pythontest
+    sx_python_test
+
+SX_Search_Autotest
+    Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
+    ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}
+    ${linenumber}    Line Number    f:\search.txt
+    log    ${linenumber}
+    ${looptimes}    Evaluate    int(${linenumber})+1
+    : FOR    ${j}    IN RANGE    1    101
+    \    sx_search    F:\search.txt    ${j}
+    \    sleep    5
+    \    ${result}    AppiumLibrary.Get Element Attribute    xpath = //android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView[2]    text
+    \    log    ${result}
+    \    ${content}    read_line    F:\search.txt    ${j}
+    \    log    ${content}
+    \    Run Keyword If    "${result}"=="第 0 页"    wirte_file    F:\search123.txt    ${content}
+    \    ...    ELSE    rc_ok
+    \    sleep    5
+    \    sx_screen_shot    ${j}
+
+test
+    Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
+    ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}
+    \    Run Keyword If    AppiumLibrary.Page Should Contain Text    第 0 页    wirte_file    F:\noresult.txt    read_line
+    \    ...    F:\search.txt    ${j}
+    \    ...    ELSE    sx_screen_shot    ${j}
+
+123
+    sx_screen_shot    1

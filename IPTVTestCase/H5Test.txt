@@ -2,7 +2,6 @@
 Resource          ../Resources/Environment.txt
 Library           AppiumLibrary
 Library           NewLibrary
-Library           BGLogLibrary
 
 *** Test Cases ***
 IPTVLiveH5Test
@@ -31,6 +30,23 @@ IPTVLiveH5Test
     ${current_context}    get_current_context
     频道列表截图
     send_email    xiangfang@iflytek.com    liveshot
+
+fiberhome
+    ${Process}    Set Variable    com.fiberhome.iptv
+    ${androidProcess}=    Create Dictionary    androidProcess=${Process}
+    ${UNICODEKEYBOARD}    Set Variable    True
+    ${RESETKEYBOARD}    Set Variable    True
+    rc_right
+    AppiumLibrary.Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    automationName=${AUTOMATIONNAME}    appPackage=${APPPACKAGE}
+    ...    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}    unicodeKeyboard=True    resetKeyboard=True    chromeOptions=${androidProcess}
+    sleep    2
+    searchContent
+    sleep    3
+    rc_ok
+    ${contexts}    get_contexts
+    ${current_context}    get_current_context
+    Switch To Context    WEBVIEW_com.fiberhome.iptv
+    ${androidProcess}
 
 *** Keywords ***
 特殊频道
