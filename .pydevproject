@@ -6,6 +6,5 @@
 <path>/${PROJECT_DIR_NAME}</path>
 <path>/${PROJECT_DIR_NAME}/Resources</path>
 <path>/${PROJECT_DIR_NAME}/IPTVTestCase</path>
-<path>/${PROJECT_DIR_NAME}/NewLibrary</path>
 </pydev_pathproperty>
 </pydev_project>
