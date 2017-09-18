@@ -47,3 +47,12 @@ test
 
 123
     sx_screen_shot    1
+
+test123
+    ${filenumber}    file_number    f:\file
+    log    ${filenumber}
+    ${looptimes}    Evaluate    int(${filenumber})+1
+    : FOR    ${i}    IN RANGE    1    ${looptimes}
+    \    ${filename}    Set Variable    screenshot${i}.png
+    \    ${size}    read_size    f:\\file\\${filename}
+    \    Run Keyword If    ${size}<50000    move_file    F:\\file\\${filename}    F:\\filetest

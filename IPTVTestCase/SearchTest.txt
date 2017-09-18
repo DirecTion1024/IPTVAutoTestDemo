@@ -5,44 +5,44 @@ Resource          ../Resources/Environment.txt
 
 *** Test Cases ***
 SearchFilm
-    Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
+    AppiumLibrary.Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
     ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}
     Sleep    3
     Print Msg    test
     rc_down
     searchContent
     Sleep    5
-    ${name}    Get Element Attribute    xpath=//android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView    text
+    ${name}    AppiumLibrary.Get Element Attribute    xpath=//android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView    text
     log    ${name}
 
 JudgeFocus
-    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout    focused
+    ${stat}    AppiumLibrary.Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout    focused
     log    ${stat}
     sleep    3
     Run Keyword If    '${stat}'=='true'    log    焦点位置正确
-    ...    ELSE    Capture Page Screenshot
+    ...    ELSE    AppiumLibrary.Capture Page Screenshot
 
 ErgodicFocus
     : FOR    ${i}    IN    3    5    7    9
     \    rc_right
-    \    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${i}]    focused
+    \    ${stat}    AppiumLibrary.Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${i}]    focused
     \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
     \    ...    ELSE    Capture Page Screenshot
     rc_down
     sleep    2
     : FOR    ${j}    IN    10    8    6    4
     ...    2
-    \    ${stat}    Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${j}]    focused
+    \    ${stat}    AppiumLibrary.Get Element Attribute    xpath=//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[${j}]    focused
     \    Run Keyword If    '${stat}'=='true'    log    焦点位置正确
     \    ...    ELSE    Capture Page Screenshot
     \    rc_left
 
 GetPage
-    ${content}    Get Element Attribute    xpath=//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.TextView[3]    text
+    ${content}    AppiumLibrary.Get Element Attribute    xpath=//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.TextView[3]    text
     log    ${content}
     ${pagenum}    get_page    ${content}
     log    ${pagenum}
     Run Keyword If    '${pagenum}'=='3'    log    pagenumber is right
-    ...    ELSE    Capture Page Screenshot
+    ...    ELSE    AppiumLibrary.Capture Page Screenshot
 
 *** Keywords ***

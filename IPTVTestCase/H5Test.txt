@@ -39,7 +39,7 @@ fiberhome
     open_youku
     sleep    3
     rc_backkey
-    AppiumLibrary.Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    automationName=${AUTOMATIONNAME}    appPackage=${APPPACKAGE}
+    Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    automationName=${AUTOMATIONNAME}    appPackage=${APPPACKAGE}
     ...    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}    unicodeKeyboard=True    resetKeyboard=True    chromeOptions=${androidProcess}
     sleep    2
     rc_ok
@@ -50,32 +50,28 @@ fiberhome
     Log Source
     ${log}    Set Variable    Log Source
 
-test
+youkutest
     ${Process}    Set Variable    com.fiberhome.iptv
     ${androidProcess}=    Create Dictionary    androidProcess=${Process}
     ${UNICODEKEYBOARD}    Set Variable    True
     ${RESETKEYBOARD}    Set Variable    True
     Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    automationName=${AUTOMATIONNAME}    appPackage=${APPPACKAGE}
     ...    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}    unicodeKeyboard=True    resetKeyboard=True    chromeOptions=${androidProcess}
+    sleep    5
     rc_right
     open_youku
     sleep    3
     rc_ok
     sleep    2
+    open_url    "http://itvmkt.ah163.net/youku/detail.html?video_id=3943"
+    sleep    3
     ${contexts}    get_contexts
     ${current_context}    get_current_context
     Switch To Context    WEBVIEW_com.fiberhome.iptv
-    Switch Window
-    Log Source
-
-test123
-    ${filenumber}    file_number    f:\file
-    log    ${filenumber}
-    ${looptimes}    Evaluate    int(${filenumber})+1
-    :FOR    ${i}    IN RANGE    1    ${looptimes}
-    \    ${filename}    Set Variable    screenshot${i}.png
-    \    ${size}    read_size    f:\\file\\${filename}
-    \    Run Keyword If    ${size}<50000    move_file    F:\\file\\${filename}    F:\\filetest
+    sleep    2
+    switch_to_frame
+    ${content}    page_source
+    log    ${content}
 
 *** Keywords ***
 特殊频道

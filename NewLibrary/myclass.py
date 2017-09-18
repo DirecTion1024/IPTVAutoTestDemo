@@ -232,5 +232,18 @@ class MyClass(AppiumLibrary):
     
     def move_file(self,srcpath,targetpath):
         shutil.move(srcpath, targetpath)
+    
+    def switch_to_frame(self):
+        self.driver = self._current_application()
+        print (dir(self.driver))
+        self.driver.switch_to_frame("mainWin")
+
+    def open_url(self,url):
+        content = "adb shell am start -n com.fiberhome.iptv/.FHIptv --es intentMsg " + str(url)
+        print content
+        os.system(content)
+        
+        
+        
         
         
