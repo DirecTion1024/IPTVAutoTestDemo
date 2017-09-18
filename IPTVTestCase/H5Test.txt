@@ -63,15 +63,28 @@ youkutest
     sleep    3
     rc_ok
     sleep    2
-    open_url    "http://itvmkt.ah163.net/youku/detail.html?video_id=3943"
-    sleep    3
-    ${contexts}    get_contexts
-    ${current_context}    get_current_context
-    Switch To Context    WEBVIEW_com.fiberhome.iptv
-    sleep    2
-    switch_to_frame
-    ${content}    page_source
-    log    ${content}
+    ${linenumber}    Line Number    f:\search.txt
+    log    ${linenumber}
+    ${looptimes}    Evaluate    int(${linenumber})+1
+    :FOR    ${i}    IN RANGE    1    ${looptimes}
+    \    ${url}    youku_search    F:\youku.txt    ${i}
+    \    open_url    ${url}
+    \    sleep    3
+    \    ${contexts}    get_contexts
+    \    ${current_context}    get_current_context
+    \    Switch To Context    WEBVIEW_com.fiberhome.iptv
+    \    sleep    2
+    \    switch_to_frame
+    \    ${content}    page_source
+    \    log    ${content}
+
+test
+    ${linenumber}    Line Number    f:\youku.txt
+    log    ${linenumber}
+    ${looptimes}    Evaluate    int(${linenumber})+1
+    :FOR    ${i}    IN RANGE    1    ${looptimes}
+    \    ${content}    youku_search    F:\youku.txt    ${i}
+    \    open_url    ${content}
 
 *** Keywords ***
 特殊频道

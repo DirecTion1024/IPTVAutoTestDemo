@@ -239,11 +239,17 @@ class MyClass(AppiumLibrary):
         self.driver.switch_to_frame("mainWin")
 
     def open_url(self,url):
-        content = "adb shell am start -n com.fiberhome.iptv/.FHIptv --es intentMsg " + str(url)
+        content = "adb shell am start -n com.fiberhome.iptv/.FHIptv --es intentMsg " + "\"" + str(url) + "\""
         print content
         os.system(content)
         
-        
+    def youku_search(self,filepath,linenum):
+        print filepath
+        print linenum
+        content = linecache.getline(str(filepath),int(linenum))
+        #command = content.decode("utf-8").encode("gbk")
+        print content
+        return content   
         
         
         
