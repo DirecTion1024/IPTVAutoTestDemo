@@ -260,7 +260,7 @@ class MyClass(AppiumLibrary):
             return 'not search'
         
     def wirte_youku_file(self,urlid,content):
-        filelocation = "F:\\"+str(urlid)+".txt"
+        filelocation = "F:\\youku\\"+str(urlid)+".txt"
         fhandle = open(str(filelocation),'w')
         fhandle.write(content)
         fhandle.close()    
