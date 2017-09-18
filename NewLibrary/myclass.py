@@ -13,6 +13,7 @@ from appium.webdriver.common.touch_action import TouchAction
 from selenium.common.exceptions import TimeoutException, WebDriverException
 from robot.libraries.BuiltIn import BuiltIn
 from robot.api import logger
+import re
 
 class MyClass(AppiumLibrary):
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
@@ -251,5 +252,25 @@ class MyClass(AppiumLibrary):
         print content
         return content   
         
+    def read_id(self,content):
+        m = re.search(r'[^=]+$', content)
+        if m:
+            return m.group(0)
+        else:
+            return 'not search'
         
+    def wirte_youku_file(self,urlid,content):
+        filelocation = "F:\\"+str(urlid)+".txt"
+        fhandle = open(str(filelocation),'w')
+        fhandle.write(content)
+        fhandle.close()    
+        
+        
+        
+        
+        
+        
+        
+        
+            
         

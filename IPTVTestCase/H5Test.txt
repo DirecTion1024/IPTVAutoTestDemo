@@ -77,14 +77,9 @@ youkutest
     \    switch_to_frame
     \    ${content}    page_source
     \    log    ${content}
-
-test
-    ${linenumber}    Line Number    f:\youku.txt
-    log    ${linenumber}
-    ${looptimes}    Evaluate    int(${linenumber})+1
-    :FOR    ${i}    IN RANGE    1    ${looptimes}
-    \    ${content}    youku_search    F:\youku.txt    ${i}
-    \    open_url    ${content}
+    \    ${id}    read_id    ${url}
+    \    log    ${id}
+    \    wirte_youku_file    ${id}    ${content}
 
 *** Keywords ***
 特殊频道
