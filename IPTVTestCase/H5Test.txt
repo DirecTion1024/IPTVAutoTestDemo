@@ -57,16 +57,15 @@ youkutest
     ${RESETKEYBOARD}    Set Variable    True
     Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    automationName=${AUTOMATIONNAME}    appPackage=${APPPACKAGE}
     ...    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}    unicodeKeyboard=True    resetKeyboard=True    chromeOptions=${androidProcess}
-    sleep    5
-    rc_right
+    sleep    10
     open_youku
     sleep    3
     rc_ok
     sleep    2
-    ${linenumber}    Line Number    f:\search.txt
+    ${linenumber}    Line Number    f:\youku.txt
     log    ${linenumber}
     ${looptimes}    Evaluate    int(${linenumber})+1
-    :FOR    ${i}    IN RANGE    1    ${looptimes}
+    : FOR    ${i}    IN RANGE    1    ${looptimes}
     \    ${url}    youku_search    F:\youku.txt    ${i}
     \    open_url    ${url}
     \    sleep    3
@@ -74,12 +73,14 @@ youkutest
     \    ${current_context}    get_current_context
     \    Switch To Context    WEBVIEW_com.fiberhome.iptv
     \    sleep    2
-    \    switch_to_frame
-    \    ${content}    page_source
+    \    Run Keyword If    "${i}"=="1"    switch_to_frame
+    \    ${content}    log_source
     \    log    ${content}
     \    ${id}    read_id    ${url}
     \    log    ${id}
     \    wirte_youku_file    ${id}    ${content}
+
+test
 
 *** Keywords ***
 特殊频道

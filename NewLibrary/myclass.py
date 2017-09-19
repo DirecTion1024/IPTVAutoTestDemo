@@ -211,11 +211,9 @@ class MyClass(AppiumLibrary):
         smtp.quit()  
      
     def page_source(self):
-        print 'in page_source'
         driver = self._current_application()
-        page_source = driver.page_source()
-        print page_source
-        return page_source       
+        content = driver.log_source()
+        return content     
     
     def read_line(self,filepath,linenum):
          return linecache.getline(str(filepath),int(linenum)).decode("utf-8").encode("gbk")
@@ -255,17 +253,24 @@ class MyClass(AppiumLibrary):
     def read_id(self,content):
         m = re.search(r'[^=]+$', content)
         if m:
-            return m.group(0)
+            id = m.group(0)
+            return id[0:-1]
         else:
             return 'not search'
         
     def wirte_youku_file(self,urlid,content):
-        filelocation = "F:\\youku\\"+str(urlid)+".txt"
+        filelocation = "F:\\youku\\" +urlid +".txt"
+        print filelocation
         fhandle = open(str(filelocation),'w')
-        fhandle.write(content)
-        fhandle.close()    
+        source = content.encode("utf-8")
+        fhandle.write(source)
+        fhandle.close()
         
-        
+    def log_source(self, loglevel='INFO'):
+        print self._current_application()
+        source = self._current_application().page_source
+        self._log(source,loglevel.upper())
+        return source
         
         
         
