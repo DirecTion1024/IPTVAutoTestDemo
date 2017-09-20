@@ -7,11 +7,6 @@ from AppiumLibrary import AppiumLibrary
 import smtplib  
 from email.mime.multipart import MIMEMultipart  
 from email.mime.text import MIMEText  
-from email.mime.image import MIMEImage
-import subprocess
-from appium.webdriver.common.touch_action import TouchAction
-from selenium.common.exceptions import TimeoutException, WebDriverException
-from robot.libraries.BuiltIn import BuiltIn
 from robot.api import logger
 import re
 
@@ -271,8 +266,23 @@ class MyClass(AppiumLibrary):
         source = self._current_application().page_source
         self._log(source,loglevel.upper())
         return source
-        
-        
+
+    #def log_source(self, loglevel='INFO'):
+        """Logs and returns the entire html source of the current page or frame1.
+
+        The `loglevel` argument defines the used log level. Valid log levels are
+        `WARN`, `INFO` (default), `DEBUG`, `TRACE` and `NONE` (no logging).
+        """
+        #ll = loglevel.upper()
+        #if ll == 'NONE':
+            #return ''
+        #else:
+            #source = self._current_application().page_source
+            #self._log(source, ll)
+            #return source        
+    def get_source(self):
+        """Returns the entire source of the current page."""
+        return self._current_application().page_source    
         
         
         

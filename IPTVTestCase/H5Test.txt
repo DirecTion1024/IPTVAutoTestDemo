@@ -1,6 +1,8 @@
 *** Settings ***
 Resource          ../Resources/Environment.txt
-Library           NewLibrary
+Library           ../NewLibrary
+Library           ../BGLogLibrary
+Library           IflyAppiumLib
 
 *** Test Cases ***
 IPTVLiveH5Test
@@ -81,6 +83,32 @@ youkutest
     \    wirte_youku_file    ${id}    ${content}
 
 test
+    : FOR    ${i}    IN RANGE    1    4
+    \    ${Process}    Set Variable    com.fiberhome.iptv
+    \    ${androidProcess}=    Create Dictionary    androidProcess=${Process}
+    \    ${UNICODEKEYBOARD}    Set Variable    True
+    \    ${RESETKEYBOARD}    Set Variable    True
+    \    Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    automationName=${AUTOMATIONNAME}
+    \    ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}    unicodeKeyboard=True
+    \    ...    resetKeyboard=True    chromeOptions=${androidProcess}
+    \    sleep    10
+    \    open_youku
+    \    sleep    3
+    \    rc_ok
+    \    sleep    2
+    \    ${url}    youku_search    F:\youku.txt    ${i}
+    \    open_url    ${url}
+    \    sleep    3
+    \    ${contexts}    get_contexts
+    \    ${current_context}    get_current_context
+    \    Switch To Context    WEBVIEW_com.fiberhome.iptv
+    \    sleep    2
+    \    switch_to_frame
+    \    ${content}    Log Source
+    \    log    ${content}
+    \    ${id}    read_id    ${url}
+    \    log    ${id}
+    \    wirte_youku_file    ${id}    ${content}
 
 *** Keywords ***
 特殊频道
