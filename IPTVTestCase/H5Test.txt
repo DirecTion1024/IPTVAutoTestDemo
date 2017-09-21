@@ -60,8 +60,6 @@ youkutest
     sleep    10
     open_youku
     sleep    3
-    rc_ok
-    sleep    2
     ${linenumber}    Line Number    f:\youku.txt
     log    ${linenumber}
     ${looptimes}    Evaluate    int(${linenumber})+1
