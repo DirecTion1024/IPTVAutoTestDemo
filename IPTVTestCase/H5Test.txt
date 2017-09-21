@@ -1,8 +1,6 @@
 *** Settings ***
 Resource          ../Resources/Environment.txt
-Library           ../NewLibrary
-Library           ../BGLogLibrary
-Library           IflyAppiumLib
+Library           NewLibrary
 
 *** Test Cases ***
 IPTVLiveH5Test
@@ -83,7 +81,10 @@ youkutest
     \    wirte_youku_file    ${id}    ${content}
 
 test
-    : FOR    ${i}    IN RANGE    1    4
+    ${linenumber}    Line Number    f:\youku.txt
+    log    ${linenumber}
+    ${looptimes}    Evaluate    int(${linenumber})+1
+    : FOR    ${i}    IN RANGE    1    ${looptimes}
     \    ${Process}    Set Variable    com.fiberhome.iptv
     \    ${androidProcess}=    Create Dictionary    androidProcess=${Process}
     \    ${UNICODEKEYBOARD}    Set Variable    True
