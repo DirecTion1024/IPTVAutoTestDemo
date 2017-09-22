@@ -5,6 +5,9 @@ from time import sleep
 import linecache
 import re
 import subprocess
+from BGLogLibrary import *
+
+
 def open_url(url):
     content = "adb shell am start -n com.fiberhome.iptv/.FHIptv --es intentMsg " + "\"" + str(url) + "\""
     os.system(content)
