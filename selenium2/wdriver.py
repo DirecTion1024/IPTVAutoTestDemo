@@ -45,12 +45,17 @@ def open_chrome_driver():
 def shutdown_chrome_driver():
     os.popen("TASKKILL /F /IM chromedriver.exe /T")       
 
-def line_number(self,filelocation):
+def line_number(filelocation):
     fobj = open(filelocation,'r')        
     row_len = len(fobj.readlines())
     return row_len
 
-for i in range(1,line_number("f:\youku.txt")+1):
+looptime = line_number("f:\youku.txt")+1
+print looptime
+open_youku()
+print("open youku SUCCESS")
+sleep(2)
+for i in range(1,looptime):
     print(line_number("f:\youku.txt")+1)
     open_chrome_driver()
     print("start chrome_driver SUCCESS")
@@ -58,10 +63,7 @@ for i in range(1,line_number("f:\youku.txt")+1):
 #command = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text 打开优酷'
 #print command.decode("utf-8").encode("gbk")
 #os.popen(command.decode("utf-8").encode("gbk"))
-    open_youku()
-    print("open youku SUCCESS")
-    sleep(2)
-    open_url(youku_search("F:\youku.txt",1))
+    open_url(youku_search("F:\youku.txt",i))
 #content = "adb shell am start -n com.fiberhome.iptv/.FHIptv --es intentMsg " + "\"" + "http://itvmkt.ah163.net/youku/detail.html?video_id=3943" + "\""
 #print content
 #os.popen(content)
