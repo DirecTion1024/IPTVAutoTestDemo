@@ -7,7 +7,6 @@ import re
 import subprocess
 def open_url(url):
     content = "adb shell am start -n com.fiberhome.iptv/.FHIptv --es intentMsg " + "\"" + str(url) + "\""
-    print content
     os.system(content)
         
 def youku_search(filepath,linenum):
@@ -28,7 +27,6 @@ def read_id(content):
         
 def wirte_youku_file(urlid,content):
     filelocation = "F:\\youku\\" +urlid +".txt"
-    print filelocation
     fhandle = open(str(filelocation),'w')
     source = content.encode("utf-8")
     fhandle.write(source)
