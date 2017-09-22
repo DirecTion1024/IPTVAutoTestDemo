@@ -6,9 +6,9 @@ ${DEVICENAME}     NotUsedInAndroid
 ${UDID}           ${EMPTY}    #DeviceID
 ${UID}            ${EMPTY}
 ${APP}            ${EMPTY}
-${AUTOMATIONNAME}    appium
 ${APPPACKAGE}     com.fiberhome.iptv
 ${APPACTIVITY}    .FHIptv
+${APPACTIVITY}    .MainActivity
 ${APPLAUNCHACTIVITY}    .LauncherActivity
 ${NOSIGN}         true
 ${TESTAPP}        ${CURDIR}/../../TestApp/ForImeTest.apk
