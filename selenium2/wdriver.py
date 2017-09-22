@@ -4,6 +4,7 @@ from selenium2 import webdriver
 from time import sleep
 import linecache
 import re
+import subprocess
 def open_url(url):
     content = "adb shell am start -n com.fiberhome.iptv/.FHIptv --es intentMsg " + "\"" + str(url) + "\""
     print content
@@ -39,8 +40,17 @@ def open_youku():
     os.popen(command.decode("utf-8").encode("gbk"))
 
 def open_chrome_driver():
-    os.popen("chromedriver.exe --url-base=wd/hub --port=8000 --adb-port=5037")
-   
+    subprocess.Popen("chromedriver.exe --url-base=wd/hub --port=8000 --adb-port=5037")
+    print("start chrome_driver SUCCESS")
+
+def shutdown_chrome_driver():
+    os.popen("TASKKILL /F /IM chromedriver.exe /T")
+    print("shutdown chrome_driver SUCCESS")   
+
+def line_number(self,filelocation):
+    fobj = open(filelocation,'r')        
+    row_len = len(fobj.readlines())
+    return row_len
 
 open_chrome_driver()
 sleep(1)
@@ -70,7 +80,7 @@ driver.switch_to_frame("mainWin")
 sleep(2)
 wirte_youku_file(read_id(youku_search("F:\youku.txt",1)),driver.page_source)
 #print driver.page_source
-driver.close()
+shutdown_chrome_driver()
 
 
 
