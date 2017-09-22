@@ -5,7 +5,6 @@ from time import sleep
 import linecache
 import re
 import subprocess
-from BGLogLibrary import *
 
 
 def open_url(url):
@@ -28,8 +27,8 @@ def read_id(content):
     else:
         return 'not search'
         
-def wirte_youku_file(urlid,content):
-    filelocation = "F:\\youku\\" +urlid +".txt"
+def wirte_youku_file(urlid,content,filepath):
+    filelocation = filepath +urlid +".txt"
     fhandle = open(str(filelocation),'w')
     source = content.encode("utf-8")
     fhandle.write(source)
@@ -74,7 +73,7 @@ for i in range(1,looptime+1):
                                                            {"androidPackage":"com.fiberhome.iptv",
                                                             "androidUseRunningApp":True,
                                                             "androidProcess":"com.fiberhome.iptv",
-                                                            "androidDeviceSerial":"10.1.171.83:5555"
+                                                            "androidDeviceSerial":"10.1.171.26:5555"
                                                             }
                                                            }
                                                           }
@@ -84,7 +83,7 @@ for i in range(1,looptime+1):
 #print driver.page_source
     print("swtich frame SUCCESS")
     sleep(2)
-    wirte_youku_file(read_id(youku_search("F:\youku.txt",i)),driver.page_source)
+    wirte_youku_file(read_id(youku_search("F:\youku.txt",i)),driver.page_source,"F:\\youku\\")
     print("wirte file SUCCESS")
     print("file content is:"+driver.page_source)
     shutdown_chrome_driver()
