@@ -1,2 +1,10 @@
 eclipse.preferences.version=1
+encoding//BGLogLibrary/keywords/OsspLogTest.py=utf-8
+encoding//BGLogLibrary/keywords/_ClientLog.py=utf-8
+encoding//BGLogLibrary/keywords/_OsspLog.py=utf-8
+encoding//BGLogLibrary/keywords/_ServerManager.py=utf-8
+encoding//BGLogLibrary/keywords/clientlib/ClientLogCatcherThread.py=utf-8
+encoding//BGLogLibrary/keywords/clientlib/IFlyLogParser.py=utf-8
+encoding//BGLogLibrary/keywords/clientlib/iFlyClientLogBase.py=utf-8
+encoding//BGLogLibrary/keywords/keywordgroup.py=utf-8
 encoding/<project>=UTF-8

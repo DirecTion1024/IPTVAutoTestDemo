@@ -1,5 +1,8 @@
 *** Settings ***
 Resource          ../Resources/Environment.txt
+Resource          ../Resources/BGLog.txt
+Resource          ../Resources/GetConfig.txt
+Library           DatabaseLibrary
 
 *** Keywords ***
 Open Test App
@@ -14,3 +17,83 @@ Wait And Tap Text
     [Arguments]    ${element}
     Wait Until Page Contains    ${element}    15
     Tap Text    ${element}
+
+Client Log Setup
+    Log Variables    HTML
+    Log    ${is_logcat_thread_start}
+    Run Keyword If    ${is_logcat_thread_start} == ${false}    Client Log Init
+    On TestCase    ${BGLOG_LOG_PATH}    ${SUITE_NAME}    ${TEST_NAME}
+
+Client Log TearDown
+    Client Log File Links
+    Unmark Log
+    NewLibrary.Close All Applications
+
+Client Log Init
+    ${rc}    ${output} =    Run And Return RC And Output    adb \ logcat -c
+    Should Be Equal As Integers    ${rc}    0
+    Should Not Contain    ${output}    FAIL
+    Start Client Log Thread
+    Log    ${is_logcat_thread_start}
+    Set Global Variable    ${is_logcat_thread_start}    ${true}
+    Log    ${is_logcat_thread_start}
+    Sleep    5
+
+Set Getconfig Content
+    Set Global Variable    ${getconfig_content}    {"SwitchConfig":{"app":${app_switch},"dialog": ${dialog_switch} ,"feedBackText": ${feedBackText} },"RegisterConfig":{"shopping":${shopping_switch},"stock": ${stock_switch} ,"weather":${weather_switch}}}
+
+打开应用开关
+    Set Global Variable    ${app_switch}    true
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+关闭应用开关
+    Set Global Variable    ${app_switch}    false
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+打开闲聊开关
+    Set Global Variable    ${dialog_switch}    true
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+关闭闲聊开关
+    Set Global Variable    ${dialog_switch}    false
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+打开购物开关
+    Set Global Variable    ${shopping_switch}    true
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+关闭购物开关
+    Set Global Variable    ${shopping_switch}    false
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+打开股票开关
+    Set Global Variable    ${stock_switch}    true
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+关闭股票开关
+    Set Global Variable    ${stock_switch}    false
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+打开天气开关
+    Set Global Variable    ${weather_switch}    true
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+关闭天气开关
+    Set Global Variable    ${weather_switch}    false
+    Set Getconfig Content
+    log    ${getconfig_content}
+
+连接31数据库
+    Connect To Database Using Custom Params    pymysql    database='iptvdb', user='root', password='123456', host='172.31.4.31', port=3306
+
+断开31数据库
+    Disconnect From Database

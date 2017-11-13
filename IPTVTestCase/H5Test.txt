@@ -78,29 +78,15 @@ youkutest
     \    log    ${id}
     \    wirte_youku_file    ${id}    ${content}
 
-test
+webviewname
     Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
     ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}
-    sleep    10
+    sleep    5
     open_youku
     sleep    3
     rc_ok
-    ${contexts}    get_contexts
-    ${current_context}    get_current_context
-    : FOR    ${i}    IN RANGE    1    ${looptimes}
-    \    ${url}    youku_search    F:\youku.txt    ${i}
-    \    open_url    ${url}
-    \    sleep    3
-    \    ${contexts}    get_contexts
-    \    ${current_context}    get_current_context
-    \    Switch To Context    WEBVIEW_com.fiberhome.iptv
-    \    sleep    2
-    \    Run Keyword If    "${i}"=="1"    switch_to_frame
-    \    ${content}    log_source
-    \    log    ${content}
-    \    ${id}    read_id    ${url}
-    \    log    ${id}
-    \    wirte_youku_file    ${id}    ${content}
+    sleep    2
+    ${content}    Get Contexts
 
 *** Keywords ***
 特殊频道

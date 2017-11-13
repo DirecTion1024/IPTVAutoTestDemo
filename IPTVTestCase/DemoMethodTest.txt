@@ -1,0 +1,42 @@
+*** Settings ***
+Documentation     日志测试
+Library           DatabaseLibrary
+Library           BGLogLibrary
+Resource          ../Resources/BGLog.txt
+Library           NewLibrary
+Resource          ../Resources/Environment.txt
+Library           OperatingSystem
+Resource          ../Keywords/Navigate.txt
+
+*** Test Cases ***
+testDBSelect
+    Connect To Database Using Custom Params    pymysql    database='mybatis', user='root', password='root', host='127.0.0.1', port=3306
+    ${query}    query    SELECT * FROM mybatis.homework;
+    Disconnect From Database
+
+testDBUpdate
+    Connect To Database Using Custom Params    pymysql    database='iptvdb', user='root', password='123456', host='172.31.4.31', port=3306
+    Execute Sql String    UPDATE `configinfo` SET `Config`='{\"SwitchConfig\":{\"app\": true ,\"dialog\": true ,\"feedBackText\": \"2017\" },\"RegisterConfig\":{\"shopping\": true ,\"stock\": true ,\"weather\": true }}', `CreateTime`='2017-11-10 16:25:17' WHERE (`ID`='3');
+    Disconnect From Database
+
+testKeyValue
+    [Setup]    Client Log Setup
+    NewLibrary.Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
+    ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}
+    sleep    3
+    searchContent
+    Wait Request Log    eventName    FT01007
+    Log    ${CUR_Client_LOG_MSG}
+    [Teardown]    Client Log TearDown
+
+testURL
+    [Setup]    Client Log Setup
+    NewLibrary.Open Application    ${SERVERURL}    platformName=${PLATFORMNAME}    platformVersion=${PLATFORMVERSION}    deviceName=${DEVICENAME}    app=${APP}    automationName=${AUTOMATIONNAME}
+    ...    appPackage=${APPPACKAGE}    appActivity=${APPACTIVITY}    noSign=${NOSIGN}    udid=${UDID}
+    sleep    3
+    searchContent
+    Wait Request Log    发起Vod搜索请求URL
+    Log    ${CUR_Client_LOG_MSG}
+    wait Request Log    eventName    FT01007
+    log    ${CUR_Client_LOG_MSG}
+    [Teardown]    Client Log TearDown

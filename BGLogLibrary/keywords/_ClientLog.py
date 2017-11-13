@@ -33,6 +33,7 @@ class _ClientLog(KeywordGroup):
             .regiter_tag_request("MenuStateLogCollect")\
             .regiter_tag_request("SearchSuggestionConfigDataProcessor")\
             .regiter_tag_request("statssdk_LogController")\
+            .regiter_tag_request("XiriMiddleware")\
 
         self.clientLogCatcherThread = ClientLogCatcherThread()
         self.clientLogCatcherThread.regiterObserver(self.iFlyLogTagsObserver)

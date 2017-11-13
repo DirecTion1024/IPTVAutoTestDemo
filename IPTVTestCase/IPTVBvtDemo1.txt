@@ -1,0 +1,31 @@
+*** Settings ***
+Library           DatabaseLibrary
+Library           NewLibrary
+Library           BGLogLibrary
+Library           OperatingSystem
+Resource          ../Resources/Environment.txt
+Resource          ../Resources/BGLog.txt
+Resource          ../Keywords/Navigate.txt
+Resource          ../Resources/GetConfig.txt
+
+*** Test Cases ***
+test
+    打开应用开关
+    打开闲聊开关
+    打开购物开关
+    连接31数据库
+    Execute Sql String    UPDATE `configinfo` SET `Config`='${getconfig_content}' \ WHERE (`ID`='3');
+    断开31数据库
+
+test1
+    打开应用开关
+
+testGetConfig
+    打开应用开关
+    打开闲聊开关
+    打开购物开关
+    打开股票开关
+    打开天气开关
+    连接31数据库
+    Execute Sql String    UPDATE `configinfo` SET `Config`='${getconfig_content}' \ WHERE (`ID`='3');
+    断开31数据库

@@ -56,9 +56,13 @@ class MyClass(AppiumLibrary):
         os.popen(command.decode("utf-8").encode("gbk"))
         
     def open_youku(self):
-        command = 'adb shell am startservice -a com.iflytek.xiri2.START --es startmode text --es text 打开优酷'
+        command = 'adb sheill am startservice -a com.flytek.xiri2.START --es startmode text --es text 打开优酷'
         print command.decode("utf-8").encode("gbk")
         os.popen(command.decode("utf-8").encode("gbk"))
+
+    def open_youku2(self):
+        command = 'adb shell am start -a com.huawei.iptv.stb --es intentMsg http://itvmkt.ah163.net/youku/detail.html?video_id=1'
+        os.popen(command)
     
     
     def make_odd(self,startnum,endnum):

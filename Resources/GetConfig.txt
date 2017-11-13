@@ -1,0 +1,8 @@
+*** Variables ***
+${app_switch}     true
+${dialog_switch}    true
+${shopping_switch}    true
+${stock_switch}    true
+${weather_switch}    true
+${feedBackText}    "2017"
+${getconfig_content}    true

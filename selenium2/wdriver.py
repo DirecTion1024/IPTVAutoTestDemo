@@ -6,9 +6,13 @@ import linecache
 import re
 import subprocess
 
+#根据需求修改参数
+url_path = "f:\youku.txt"
+result_path = "F:\\youku\\"
+
 
 def open_url(url):
-    content = "adb shell am start -n com.fiberhome.iptv/.FHIptv --es intentMsg " + "\"" + str(url) + "\""
+    content = "adb shell am start -n com.android.smart.terminal.iptv/com.SyMedia.SyIptv.SyIptv --es intentMsg " + "\"" + str(url) + "\""
     os.system(content)
         
 def youku_search(filepath,linenum):
@@ -49,7 +53,7 @@ def line_number(filelocation):
     row_len = len(fobj.readlines())
     return row_len
 
-looptime = line_number("f:\youku.txt")
+looptime = line_number(url_path)
 print looptime
 open_youku()
 print("open youku SUCCESS")
@@ -66,14 +70,14 @@ for i in range(1,looptime+1):
 #content = "adb shell am start -n com.fiberhome.iptv/.FHIptv --es intentMsg " + "\"" + "http://itvmkt.ah163.net/youku/detail.html?video_id=3943" + "\""
 #print content
 #os.popen(content)
-    print("openurl:"+youku_search("F:\youku.txt",i))
+    print("openurl:"+youku_search(url_path,i))
     sleep(2)
     driver = webdriver.Remote("http://127.0.0.1:8000/wd/hub", {"desiredCapabilities":
                                                           {"chromeOptions":
-                                                           {"androidPackage":"com.fiberhome.iptv",
+                                                           {"androidPackage":"com.amt.launcherah_special",
                                                             "androidUseRunningApp":True,
-                                                            "androidProcess":"com.fiberhome.iptv",
-                                                            "androidDeviceSerial":"10.1.171.26:5555"
+                                                            "androidProcess":"com.android.smart.terminal.iptv",
+                                                            "androidDeviceSerial":"10.1.171.211:5555"
                                                             }
                                                            }
                                                           }
@@ -83,7 +87,8 @@ for i in range(1,looptime+1):
 #print driver.page_source
     print("swtich frame SUCCESS")
     sleep(2)
-    wirte_youku_file(read_id(youku_search("F:\youku.txt",i)),driver.page_source,"F:\\youku\\")
+    #driver.switch_to_frame("EPG")
+    wirte_youku_file(read_id(youku_search(url_path,i)),driver.page_source,result_path)
     print("wirte file SUCCESS")
     print("file content is:"+driver.page_source)
     shutdown_chrome_driver()

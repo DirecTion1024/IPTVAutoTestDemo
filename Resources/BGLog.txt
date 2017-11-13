@@ -1,0 +1,14 @@
+*** Variables ***
+${is_test_type_bglog}    ${true}
+${is_logcat_thread_start}    ${false}
+${BGLOG_LOG_PATH}    ${OUTPUT DIR}
+${CUR_Client_LOG_MSG}    ${EMPTY}
+${CUR_Client_LOG_PCTIME}    ${EMPTY}
+${TEST_BEGIN_BY_CLIENT_TIME}    2017
+${MAX_CTM_DELTA_SECONDS}    120
+&{CUR_OSSP_DETAIL_LOG}    &{EMPTY}
+${newCommandTimeout}    180
+#&{BG_TEST_TIME_BEGIN}    2017-03-14 15:01:30.880
+#&{BG_TEST_TIME_END}    2017-03-14 15:27:27.827
+${is_check_response_log}    ${false}
+${is_check_ossp_log}    ${false}

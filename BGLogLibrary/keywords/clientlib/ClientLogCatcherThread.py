@@ -57,7 +57,7 @@ class ClientLogCatcherThread(threading.Thread):
             self.__flag.wait()      # 为True时立即返回, 为False时阻塞直到内部的标识位为True后返回
             print time.time()
             #cmd = subprocess.Popen("adb logcat -v time -s OperationManager -s OperationResultFactory -s PermissionBizHelper -s AssistHandler".split(), stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-            cmd = subprocess.Popen(("adb -s %s logcat -v time"%(self.device_id)).split(), stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+            cmd = subprocess.Popen(("adb logcat -v time").split(), stdout=subprocess.PIPE,stderr=subprocess.PIPE)
             
             line = cmd.stdout.readline()
             
